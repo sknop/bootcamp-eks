@@ -15,7 +15,7 @@ output "eks-cluster-arn" {
 }
 
 output "availability-zones" {
-  value = module.vpc.azs
+  value = [for az in module.vpc.azs : az]
 }
 
 output "public-subnet-ids" {
