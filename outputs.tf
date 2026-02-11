@@ -9,3 +9,21 @@ output "vpc-id" {
 output "eks-cluster-endpoint" {
   value = module.eks.cluster_endpoint
 }
+
+output "eks-cluster-arn" {
+  value = module.eks.cluster_arn
+}
+
+output "availability-zones" {
+  value = data.aws_availability_zones.available.all_availability_zones
+}
+
+output "public-subnet-ids" {
+  description = "Public subnet for all external-facing instances"
+  value = module.vpc.public_subnets
+}
+
+output "private-subnet-ids" {
+  description = "Subnet AZ1 for creating Confluent Cluster"
+  value = module.vpc.private_subnets
+}
