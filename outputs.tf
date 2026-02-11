@@ -15,7 +15,7 @@ output "eks-cluster-arn" {
 }
 
 output "availability-zones" {
-  value = data.aws_availability_zones.available.all_availability_zones
+  value = module.vpc.azs
 }
 
 output "public-subnet-ids" {
