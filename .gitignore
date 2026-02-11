@@ -1,0 +1,4 @@
+/.idea/
+/bootcamp-eks.iml
+/.terraform/
+/.terraform.lock.hcl
