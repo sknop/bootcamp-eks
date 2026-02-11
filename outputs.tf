@@ -14,6 +14,10 @@ output "eks-cluster-arn" {
   value = module.eks.cluster_arn
 }
 
+output "eks-cluster-name" {
+  value = module.eks.cluster_name
+}
+
 output "availability-zones" {
   value = [for az in module.vpc.azs : az]
 }
