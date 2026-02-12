@@ -3,6 +3,8 @@ kind: NodePool
 metadata:
   name: general-purpose
 spec:
+  replicas: 3
+
   template:
     spec:
       nodeClassRef:
@@ -19,13 +21,12 @@ spec:
           values: ["on-demand"]
         - key: "node.kubernetes.io/instance-family"
           operator: In
-          values: ["m6a", "m5", "r6a", "r5"] # Force Memory-balanced families
-          minValues: 3
+          values: ["m5", "r5", "m6a", "r6a"]
         - key: "node.kubernetes.io/instance-size"
-          operator: NotIn
-          values: ["medium", "large"] # Force at least xlarge (usually 16GB+ RAM)
+          operator: In # Using 'In' is more reliable than 'NotIn' for the controller
+          values: ["xlarge", "2xlarge"]
+            # Optional: Expire nodes after 2 weeks to keep them fresh
 
-      # Optional: Expire nodes after 2 weeks to keep them fresh
       expireAfter: 336h
 
   disruption:
