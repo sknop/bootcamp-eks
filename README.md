@@ -29,4 +29,24 @@ The next step is to set up the storage class for gp3 by running
 
 The latter command should show a gp2 and the new default gp3 storage class.
 
+Now we need to set the node class and node pool for auto scaling:
+
+    kubectl apply -f nodeclass.yaml --server-side
+    kubectl apply -f nodepool.yaml --server-side --force-conflicts
+
+Why --server-side? It suppresses the warning that we overwrite an existing configuration.
+Why --force-conflicts? We are taking over the control from other managers, so we need to confirm we want to do that.
+
+Finally, there is a nice management gui for Kubernetes now called Headlamp, that can be installed thus:
+
+    helm repo add headlamp https://kubernetes-sigs.github.io/headlamp
+    helm upgrade --install headlamp headlamp/headlamp --namespace headlamp --create-namespace
+    
+To start up headlamp, create a token, export some variables and set up port forwarding
+
+    kubectl create token headlamp --namespace headlamp
+    export POD_NAME=$(kubectl get pods --namespace headlamp -l "app.kubernetes.io/name=headlamp,app.kubernetes.io/instance=headlamp" -o jsonpath="{.items[0].metadata.name}"
+    export CONTAINER_PORT=$(kubectl get pod --namespace headlamp $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+    
+    kubectl --namespace headlamp port-forward $POD_NAME 8080:$CONTAINER_PORT
 
