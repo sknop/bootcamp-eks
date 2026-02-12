@@ -34,7 +34,7 @@ The latter command should show a gp2 and the new default gp3 storage class.
 
 Now we need to set the node class and node pool for auto scaling:
 
-    kubectl apply -f nodeclass.yaml --server-side
+    kubectl apply -f nodeclass.yaml --server-side --force-conflicts
     kubectl apply -f nodepool.yaml --server-side --force-conflicts
 
 Why --server-side? It suppresses the warning that we overwrite an existing configuration.

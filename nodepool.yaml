@@ -17,6 +17,7 @@ spec:
         - key: "karpenter.sh/capacity-type"
           operator: In
           values: ["on-demand"]
+          minValues: 3
         - key: "node.kubernetes.io/instance-family"
           operator: In
           values: ["m6a", "m5", "r6a", "r5"] # Force Memory-balanced families
@@ -26,12 +27,6 @@ spec:
 
       # Optional: Expire nodes after 2 weeks to keep them fresh
       expireAfter: 336h
-
-      minValues:
-        - key: "karpenter.sh/capacity-type" # Or use instance-family
-          operator: In
-          values: [ "on-demand" ]
-          minValues: 3  # <--- Keeps 3 nodes "warm" at all times
 
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
