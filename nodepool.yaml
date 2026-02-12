@@ -25,5 +25,5 @@ spec:
       expireAfter: 336h
 
   disruption:
-    consolidationPolicy: WhenUnderutilized
+    consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 1m
