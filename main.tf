@@ -141,14 +141,14 @@ data "aws_iam_policy_document" "ebs_csi_driver_assume_role" {
     condition {
       test     = "StringEquals"
       # Use the Cluster OIDC Issuer URL output and clean it up for the 'sub' condition
-      variable = "${replace(one(module.eks.cluster_oidc_issuer_url), "https://", "")}:sub"
+      variable = "${replace(module.eks.cluster_oidc_issuer_url, "https://", "")}:sub"
       values   = ["system:serviceaccount:kube-system:ebs-csi-controller-sa"]
     }
 
     condition {
       test     = "StringEquals"
       # Use the Cluster OIDC Issuer URL output and clean it up for the 'aud' condition
-      variable = "${replace(one(module.eks.cluster_oidc_issuer_url), "https://", "")}:aud"
+      variable = "${replace(module.eks.cluster_oidc_issuer_url, "https://", "")}:aud"
       values   = ["sts.amazonaws.com"]
     }
   }
@@ -156,7 +156,7 @@ data "aws_iam_policy_document" "ebs_csi_driver_assume_role" {
 
 # IAM Role for the EBS CSI Driver
 resource "aws_iam_role" "ebs_csi_driver_role" {
-  name               = "EKS-${one(module.eks.cluster_name)}-EBS-CSI-Driver-Role"
+  name               = "EKS-${module.eks.cluster_name}-EBS-CSI-Driver-Role"
   assume_role_policy = data.aws_iam_policy_document.ebs_csi_driver_assume_role.json
 
   depends_on = [
