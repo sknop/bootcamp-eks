@@ -18,6 +18,15 @@ variable "keep-until" {
 # Confluent Tags
 #################################################################
 
+variable "username" {
+  type = string
+  default = "user"
+}
+
+#################################################################
+# Confluent Tags
+#################################################################
+
 variable "cflt_environment" {
   default = "dev"
 }
