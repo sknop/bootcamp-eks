@@ -3,8 +3,6 @@ kind: NodePool
 metadata:
   name: general-purpose
 spec:
-  replicas: 3
-
   template:
     spec:
       nodeClassRef:
@@ -19,6 +17,9 @@ spec:
         - key: "karpenter.sh/capacity-type"
           operator: In
           values: ["on-demand"]
+          # This says: "Always keep at least 3 on-demand nodes ready"
+          # It doesn't care if they are all m5 or all r5.
+          minValues: 3
         - key: "node.kubernetes.io/instance-family"
           operator: In
           values: ["m5", "r5", "m6a", "r6a"]
