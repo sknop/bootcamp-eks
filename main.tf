@@ -45,7 +45,7 @@ locals {
     cflt_service      = var.cflt_service
     cflt_environment  = var.cflt_environment
     cflt_keep_until   = local.keep_until_date
-    karpenter.sh/discovery = local.name
+    "karpenter.sh/discovery" = local.name
   }
 }
 
