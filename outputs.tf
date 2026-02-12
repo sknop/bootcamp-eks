@@ -35,3 +35,7 @@ output "private-subnet-ids" {
 output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
+
+output "configure_kubectl" {
+  value = "aws eks update-kubeconfig --region ${var.region} --name ${module.eks.cluster_name} --alias <YOUR ALIAS>"
+}
