@@ -4,7 +4,7 @@ metadata:
   name: ebs-gp3-sc
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-provisioner: ebs.csi.aws.com # 🎯 CRITICAL: Specifies the AWS EBS CSI driver
+provisioner: ebs.csi.eks.amazonaws.com # 🎯 CRITICAL: Specifies the AWS EBS CSI driver
 parameters:
   type: gp3                 # EBS Volume Type: gp3 is the current best practice (20% cheaper than gp2)
   fsType: ext4              # Filesystem type (e.g., ext4, xfs)
