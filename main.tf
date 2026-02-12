@@ -45,6 +45,7 @@ locals {
     cflt_service      = var.cflt_service
     cflt_environment  = var.cflt_environment
     cflt_keep_until   = local.keep_until_date
+    karpenter.sh/discovery = local.name
   }
 }
 
@@ -95,6 +96,13 @@ module "eks" {
   compute_config = {
     enabled    = true
     node_pools = ["general-purpose"]
+  }
+
+  # 2. AUTO-TAGGING (Crucial for NodeClass Discovery)
+  # This automatically tags your subnets and security groups
+  # so your YAMLs can find them using the cluster name.
+  node_security_group_tags = {
+    "karpenter.sh/discovery" = "my-cluster"
   }
 
   vpc_id     = module.vpc.vpc_id

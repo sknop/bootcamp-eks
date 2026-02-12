@@ -3,15 +3,12 @@ kind: NodeClass
 metadata:
   name: default
 spec:
-  # Select the subnets where nodes can launch (use the IDs from your VPC)
   subnetSelectorTerms:
     - tags:
-        kubernetes.io/role/internal-elb: "1"
-
-  # Select the security groups to attach to nodes
+      karpenter.sh/discovery: <eks-cluster-name>
   securityGroupSelectorTerms:
     - tags:
-        kubernetes.io/cluster/your-cluster-name: "owned"
+        karpenter.sh/discovery: <eks-cluster-name>
 
   # Optional: Customize the disk size for Confluent (Kafka likes more space)
   ephemeralStorage:
