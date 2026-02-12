@@ -18,6 +18,9 @@ Then we need to set up the context. We do this manually rather than automaticall
 List existing contexts:
 
     kubectl config get-contexts
+
+Delete any old context that do not apply anymore (`terraform destroy` will **not** clean these up):
+
     kubectl config delete-context <CLUSTER NAME>
     
 Use the `configure_kubectl` output of the Terraform script to find the command to set up the correct context.
