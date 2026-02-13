@@ -5,10 +5,10 @@ metadata:
 spec:
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: <eks-cluster-name>
+        karpenter.sh/discovery: ${cluster-name}
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: <eks-cluster-name>
+        karpenter.sh/discovery: ${cluster-name}
 
   # Optional: Customize the disk size for Confluent (Kafka likes more space)
   ephemeralStorage:
