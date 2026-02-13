@@ -1,7 +1,7 @@
-piVersion: karpenter.sh/v1
+apiVersion: karpenter.sh/v1
 kind: NodePool
-  meta
-name: confluent-big
+metadata:
+  name: confluent-big
 spec:
   template:
     spec:
@@ -30,8 +30,6 @@ spec:
         - key: confluent.io/purpose
           value: big-nodes
           effect: NoSchedule
-      labels:
-        workload: confluent
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 1m
