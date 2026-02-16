@@ -34,7 +34,9 @@ locals {
   name               = "${var.username}-${basename(path.cwd)}"
   kubernetes_version = "1.34"
 
-  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
+  # Take the last 3 rather than the first three of the available Azs. Avoid contention for certain engines
+  len      = length(data.aws_availability_zones.available.names)
+  azs      = slice(data.aws_availability_zones.available.names, local.len - 3, local.len)
 
   tags = {
     name       = local.name
