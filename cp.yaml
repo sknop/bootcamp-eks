@@ -111,6 +111,12 @@ spec:
       image: confluentinc/cp-enterprise-prometheus:2.4.0
       pvc:
         dataVolumeCapacity: 10Gi
+  configOverrides:
+    server:
+      # Enable Flink integration
+      - confluent.controlcenter.cmf.enable=true
+      # Point to the CMF service URL
+      - confluent.controlcenter.cmf.url=http://cmf-service.confluent.svc.cluster.local:80
   podTemplate:
     resources:
       requests:
