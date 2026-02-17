@@ -113,7 +113,7 @@ spec:
         dataVolumeCapacity: 10Gi
   configOverrides:
     server:
-      # Enable Flink integration - not working?
+      # Enable Flink integration
       - confluent.controlcenter.cmf.enable=true
       # Point to the CMF service URL
       - confluent.controlcenter.cmf.url=http://cmf-service.confluent.svc.cluster.local:80
