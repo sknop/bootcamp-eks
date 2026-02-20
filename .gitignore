@@ -5,3 +5,5 @@
 /.terraform.tfvars
 /crds/
 /nodepool.yaml
+/storage.yaml
+
