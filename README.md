@@ -52,7 +52,7 @@ To start up headlamp, create a token, export some variables and set up port forw
 
     kubectl create token headlamp --namespace headlamp --duration=24h # JWT token
 
-    export POD_NAME=$(kubectl get pods --namespace headlamp -l "app.kubernetes.io/name=headlamp,app.kubernetes.io/instance=headlamp" -o jsonpath="{.items[0].metadata.name}"
+    export POD_NAME=$(kubectl get pods --namespace headlamp -l "app.kubernetes.io/name=headlamp,app.kubernetes.io/instance=headlamp" -o jsonpath="{.items[0].metadata.name}")
     export CONTAINER_PORT=$(kubectl get pod --namespace headlamp $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
     
     kubectl --namespace headlamp port-forward $POD_NAME 8080:$CONTAINER_PORT
