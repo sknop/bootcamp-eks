@@ -10,6 +10,7 @@ resource "local_file" "nodeclass" {
   content = templatefile("${path.module}/${var.nodeclass_templatefile}",
     {
       cluster-name = module.eks.cluster_name
+      tags = local.tags
     }
   )
   filename = var.inventory_file

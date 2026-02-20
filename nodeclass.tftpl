@@ -3,13 +3,17 @@ kind: NodeClass
 metadata:
   name: default
 spec:
-  subnetSelectorTerms:
-    - tags:
-        karpenter.sh/discovery: ${cluster-name}
-  securityGroupSelectorTerms:
-    - tags:
-        karpenter.sh/discovery: ${cluster-name}
+    subnetSelectorTerms:
+        - tags:
+            karpenter.sh/discovery: ${cluster-name}
+    securityGroupSelectorTerms:
+        - tags:
+            karpenter.sh/discovery: ${cluster-name}
 
   # Optional: Customize the disk size for Confluent (Kafka likes more space)
-  ephemeralStorage:
-    size: 80Gi
+    ephemeralStorage:
+        size: 80Gi
+    tags:
+        %{ for key, value in tags ~}
+        ${key}: "${value}"
+        %{ endfor ~}
