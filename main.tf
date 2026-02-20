@@ -112,6 +112,10 @@ module "eks" {
 
   tags = local.tags
 
+  eks_managed_node_groups = {
+    launch_template_tags = local.tags
+  }
+
   # Enable IRSA (OIDC) - equivalent to iam.withOIDC: true
   enable_irsa = true
 
