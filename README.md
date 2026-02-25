@@ -65,7 +65,7 @@ Set up the Helm Chart:
 
 Install Confluent For Kubernetes using Helm:
 
-    helm upgrade --install operator confluentinc/confluent-for-kubernetes --namespace confluent
+    helm upgrade --install operator confluentinc/confluent-for-kubernetes --namespace confluent --create-namespace
 
 Check that the Confluent For Kubernetes pod comes up and is running:s
 
@@ -78,8 +78,6 @@ Check that the Confluent For Kubernetes pod comes up and is running:s
     --version v1.19.2 \
     --set crds.enabled=true \
     --create-namespace
-
-Maybe try its own namespace?
 
 ## Deploy CP-Flink
 

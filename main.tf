@@ -40,6 +40,8 @@ locals {
 
   tags = {
     name       = local.name
+    Name        = local.name
+    "karpenter.sh/discovery" = local.name
     cflt_environment = var.cflt_environment
     cflt_partition = var.cflt_partition
     cflt_managed_by	= var.cflt_managed_by
@@ -47,7 +49,6 @@ locals {
     cflt_service      = var.cflt_service
     cflt_environment  = var.cflt_environment
     cflt_keep_until   = local.keep_until_date
-    "karpenter.sh/discovery" = local.name
   }
 }
 
