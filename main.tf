@@ -32,7 +32,7 @@ data "aws_availability_zones" "available" {
 
 locals {
   name               = "${var.username}-${basename(path.cwd)}"
-  kubernetes_version = "1.34"
+  kubernetes_version = "1.35"
 
   # Take the last 3 rather than the first three of the available Azs. Avoid contention for certain engines
   len      = length(data.aws_availability_zones.available.names)
