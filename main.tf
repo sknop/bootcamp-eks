@@ -39,7 +39,6 @@ locals {
   azs      = slice(data.aws_availability_zones.available.names, local.len - 3, local.len)
 
   tags = {
-    name       = local.name
     Name        = local.name
     "karpenter.sh/discovery" = local.name
     cflt_environment = var.cflt_environment
