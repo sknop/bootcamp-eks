@@ -35,7 +35,6 @@ locals {
   kubernetes_version = "1.35"
 
   # Use the first 3 AZs, looks like there are problems with of the higher AZs and endpoints
-  len      = length(data.aws_availability_zones.available.names)
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
 
   tags = {
