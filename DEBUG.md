@@ -21,3 +21,17 @@ Get the token using
 
 Duration is optional but practical for longer debugging sessions.
 
+Debug nodes:
+
+    kubectl get nodes
+    kubectl get nodes -L node.kubernetes.io/instance-type -L karpenter.sh/capacity-type -L karpenter.sh/nodepool
+
+Debug storage:
+
+    kubectl get pvc
+    kubectl get pv
+
+If something goes wrong, check the storage class first
+
+    kubectl describe storageclass
+

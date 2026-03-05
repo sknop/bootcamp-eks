@@ -82,4 +82,9 @@ Check that the Confluent For Kubernetes pod comes up and is running:s
 ## Deploy CP-Flink
 
     helm upgrade --install cp-flink-kubernetes-operator confluentinc/flink-kubernetes-operator
+
+Wait until the new node has been created before attempting the next step. 
+The reason is that EKS will create a basic node (t3.medium) using the default settings. If this instance
+attempts to create a persistent volume (PV), it does not use our storage class, and this will most likely fail.
+
     helm upgrade --install cmf confluentinc/confluent-manager-for-apache-flink
