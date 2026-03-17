@@ -79,6 +79,10 @@ Check that the Confluent For Kubernetes pod comes up and is running:s
     --set crds.enabled=true \
     --create-namespace
 
+# Switch namespaces 
+
+    kubens confluent
+
 ## Deploy CP-Flink
 
     helm upgrade --install cp-flink-kubernetes-operator confluentinc/flink-kubernetes-operator
